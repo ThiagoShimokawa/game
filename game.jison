@@ -10,6 +10,7 @@
 "cima"                return 'CIMA'
 "baixo"               return 'BAIXO'
 "resetar"             return 'RESETAR'
+"marcar"              return 'MARCAR'
 <<EOF>>               return 'EOF'
 .                     return 'INVALID'
 
@@ -45,9 +46,12 @@ e
         {{
            $$ = canvasDraw($1);   
         }}
-
     | 'RESETAR'
         {{
-            $$ = resetarCanvas()
-        }}               
+            $$ = resetarCanvas();
+        }}
+    | 'MARCAR'
+        {{
+            $$ = marcarDraw();
+        }}
     ;

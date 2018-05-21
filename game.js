@@ -614,10 +614,11 @@ symbols_: {
   "DIREITA": 3,
   "EOF": 1,
   "ESQUERDA": 4,
+  "MARCAR": 8,
   "RESETAR": 7,
-  "e": 9,
+  "e": 10,
   "error": 2,
-  "expressions": 8
+  "expressions": 9
 },
 terminals_: {
   1: "EOF",
@@ -626,7 +627,8 @@ terminals_: {
   4: "ESQUERDA",
   5: "CIMA",
   6: "BAIXO",
-  7: "RESETAR"
+  7: "RESETAR",
+  8: "MARCAR"
 },
 TERROR: 2,
     EOF: 1,
@@ -732,14 +734,14 @@ TERROR: 2,
     },
 productions_: bp({
   pop: u([
-  8,
+  9,
   s,
-  [9, 5]
+  [10, 6]
 ]),
   rule: u([
   2,
   s,
-  [1, 5]
+  [1, 6]
 ])
 }),
 performAction: function parser__PerformAction(yystate /* action[1] */, yysp, yyvstack) {
@@ -788,28 +790,34 @@ case 5:
 case 6:
     /*! Production::    e : RESETAR */
 
-    this.$ = resetarCanvas()
+    this.$ = resetarCanvas();
+    break;
+
+case 7:
+    /*! Production::    e : MARCAR */
+
+    this.$ = marcarDraw();
     break;
 
 }
 },
 table: bt({
   len: u([
-  7,
+  8,
   1,
   1,
   s,
-  [0, 6]
+  [0, 7]
 ]),
   symbol: u([
   s,
-  [3, 7, 1],
+  [3, 8, 1],
   1,
   1
 ]),
   type: u([
   s,
-  [2, 5],
+  [2, 6],
   0,
   0,
   1,
@@ -821,21 +829,21 @@ table: bt({
 ]),
   mode: u([
   s,
-  [1, 6]
+  [1, 7]
 ]),
   goto: u([
   s,
-  [3, 6, 1]
+  [3, 7, 1]
 ])
 }),
 defaultActions: bda({
   idx: u([
   s,
-  [3, 6, 1]
+  [3, 7, 1]
 ]),
   goto: u([
   s,
-  [2, 5, 1],
+  [2, 6, 1],
   1
 ])
 }),
@@ -876,7 +884,7 @@ parse: function parse(input) {
     var TERROR = this.TERROR;
     var EOF = this.EOF;
     var ERROR_RECOVERY_TOKEN_DISCARD_COUNT = (this.options.errorRecoveryTokenDiscardCount | 0) || 3;
-    var NO_ACTION = [0, 9 /* === table.length :: ensures that anyone using this new state will fail dramatically! */];
+    var NO_ACTION = [0, 10 /* === table.length :: ensures that anyone using this new state will fail dramatically! */];
 
     var lexer;
     if (this.__lexer__) {
@@ -3207,12 +3215,16 @@ EOF: 1,
       5: 7,
 
       /*! Conditions:: INITIAL */
+      /*! Rule::       marcar */
+      6: 8,
+
+      /*! Conditions:: INITIAL */
       /*! Rule::       $ */
-      6: 1,
+      7: 1,
 
       /*! Conditions:: INITIAL */
       /*! Rule::       . */
-      7: 'INVALID'
+      8: 'INVALID'
     },
 
     rules: [
@@ -3222,13 +3234,14 @@ EOF: 1,
       /* 3: */  /^(?:cima)/,
       /* 4: */  /^(?:baixo)/,
       /* 5: */  /^(?:resetar)/,
-      /* 6: */  /^(?:$)/,
-      /* 7: */  /^(?:.)/
+      /* 6: */  /^(?:marcar)/,
+      /* 7: */  /^(?:$)/,
+      /* 8: */  /^(?:.)/
     ],
 
     conditions: {
       'INITIAL': {
-        rules: [0, 1, 2, 3, 4, 5, 6, 7],
+        rules: [0, 1, 2, 3, 4, 5, 6, 7, 8],
         inclusive: true
       }
     }

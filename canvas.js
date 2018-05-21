@@ -12,10 +12,10 @@
       var parede_x=10,parede_y=300;
 
       // Array com as coordenadas dos obstaculos. Tamanho da tela: 300 X 300
-      var obstaculos=[
-        {x:150, y:60},
-        {x:150, y:90},
-        {x:150, y:120},
+      var obstaculos = [
+        { x: 150, y: 60 },
+        { x: 150, y: 90 },
+        { x: 150, y: 120 },
       ];
 
       // This function is called on page load.
@@ -27,9 +27,9 @@
         canvas = document.getElementById("myCanvas");
         ctx = canvas.getContext("2d");
          
-        setInterval(Atualizar, 10);
+        setInterval( Atualizar, 10 );
       
-        window.addEventListener('keydown', _controles, true);
+        //window.addEventListener('keydown', _controles, true);
       }
 
 
@@ -52,9 +52,9 @@
         ctx.beginPath();     
         
         obstaculos.forEach(function(pos) {
-          ctx.rect(pos.x, pos.y - 30, 30, 30);
+          ctx.rect(pos.x, pos.y, 30, 30);
         }, this);
-        
+
         ctx.closePath();
         ctx.fillStyle = "black";
         ctx.fill(); 
@@ -64,11 +64,14 @@
         console.log("Atualizar");
         desenhaFundo();
         desenhaQuadrado();
-         desenhaParede();
+        desenhaParede();
 
       }
 
-
+      function marcarDraw() {
+        console.log({x: desenho_box_X, y: desenho_box_Y})
+        obstaculos.push({x: desenho_box_X, y: desenho_box_Y})
+      }
 
       function canvasDraw(dir){
         
@@ -78,30 +81,34 @@
 
 
         if(dir == "direita"){
-          var c = verificarObstaculo(desenho_box_X + box_X , desenho_box_Y + box_Y)
-          console.log(c)
+          var c = verificarObstaculo(desenho_box_X + box_X , desenho_box_Y)
+          //console.log(c)
           if(!c )
             desenho_box_X = desenho_box_X + box_X;
-          //if (desenho_box_X > tamanho_box_X - box_X){ 
-           // desenho_box_X = tamanho_box_X - box_X;
-           // msg()
-         // } 
+          if (desenho_box_X > tamanho_box_X - box_X){ 
+            desenho_box_X = tamanho_box_X - box_X;
+            msg()
+          } 
         }else if(dir=="esquerda"){
-          if(desenho_box_X - box_X!=150 || desenho_box_Y + box_Y>120)
+          var c = verificarObstaculo(desenho_box_X - box_X , desenho_box_Y)
+          if(!c )
             desenho_box_X = desenho_box_X - box_X;
           if (desenho_box_X < 0){ 
               desenho_box_X = 0;
               msg()
           }   
         }else if(dir=="cima"){
-          if(desenho_box_X + box_X!=180 || desenho_box_Y + box_Y>150)
+          var c = verificarObstaculo(desenho_box_X, desenho_box_Y - box_Y)
+          if(!c )
               desenho_box_Y = desenho_box_Y - box_Y;
           if (desenho_box_Y < 0){ 
              desenho_box_Y = 0;
              msg()
           }   
         }else if(dir=="baixo"){
-          desenho_box_Y = desenho_box_Y + box_Y;
+          var c = verificarObstaculo(desenho_box_X , desenho_box_Y + box_Y)
+          if(!c )
+            desenho_box_Y = desenho_box_Y + box_Y;
           if (desenho_box_Y > tamanho_box_Y - box_Y){ 
              desenho_box_Y = tamanho_box_Y - box_Y; 
              msg()
@@ -133,7 +140,12 @@
       function resetarCanvas(){
         $("#entrada").val('');
         desenho_box_X = 0; // current desenho_box_ position X
-        desenho_box_Y = 0; // current desenho_box_ position Y     
+        desenho_box_Y = 0; // current desenho_box_ position Y  
+        obstaculos = [
+          { x: 150, y: 60 },
+          { x: 150, y: 90 },
+          { x: 150, y: 120 },
+        ];  
         tamanho_box_X=300, tamanho_box_Y=300;
         box_X=30, box_Y=30;
         parede_x=10,parede_y=100;
@@ -143,11 +155,6 @@
 
 
       function _controles(evt) {
-
-         
-       
-       
-
         switch (evt.keyCode) {
 
           // Left 
