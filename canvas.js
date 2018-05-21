@@ -11,6 +11,7 @@
       var box_X=30, box_Y=30;
       var parede_x=10,parede_y=300;
 
+      // Array com as coordenadas dos obstaculos. Tamanho da tela: 300 X 300
       var obstaculos=[
         {x:150, y:60},
         {x:150, y:90},
@@ -49,7 +50,11 @@
 
        function desenhaParede() {
         ctx.beginPath();     
-        ctx.rect(150, 0, 30, 120); 
+        
+        obstaculos.forEach(function(pos) {
+          ctx.rect(pos.x, pos.y - 30, 30, 30);
+        }, this);
+        
         ctx.closePath();
         ctx.fillStyle = "black";
         ctx.fill(); 
