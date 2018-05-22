@@ -69,8 +69,8 @@
       function Atualizar() {
         console.log("Atualizar");
         desenhaFundo();
-        desenhaQuadrado();
         desenhaParede();
+        desenhaQuadrado();
 
       }
 
