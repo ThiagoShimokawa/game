@@ -10,6 +10,11 @@
       var tamanho_box_X=300, tamanho_box_Y=300;
       var box_X=30, box_Y=30;
       var parede_x=10,parede_y=300;
+      
+      var imagem = new Image();
+      imagem.src = "img/mira.fw.png"
+      imagem = imagem
+      
 
       // Array com as coordenadas dos obstaculos. Tamanho da tela: 300 X 300
       var obstaculos = [
@@ -39,6 +44,13 @@
           ctx.fill();         
       }
 
+     
+
+      
+      
+     
+
+
       function desenhaQuadrado() {
         /*ctx.beginPath();     
         ctx.rect(desenho_box_X, desenho_box_Y, box_X, box_Y); 
@@ -46,13 +58,14 @@
         ctx.fillStyle = "green";
         ctx.fill();*/
         
-        var imagem = new Image();
-        imagem.src = "img/mira.fw.png"
-        imagem.onload = function() {
+       
+        
+        //imagem.onload = function() {
           ctx.drawImage(imagem, desenho_box_X, desenho_box_Y);
-        }
+        //}
       }
 
+     
 
        function desenhaParede() {
         ctx.beginPath();     
