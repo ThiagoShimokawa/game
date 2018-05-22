@@ -40,11 +40,17 @@
       }
 
       function desenhaQuadrado() {
-        ctx.beginPath();     
+        /*ctx.beginPath();     
         ctx.rect(desenho_box_X, desenho_box_Y, box_X, box_Y); 
         ctx.closePath();
         ctx.fillStyle = "green";
-        ctx.fill(); 
+        ctx.fill();*/
+        
+        var imagem = new Image();
+        imagem.src = "img/mira.fw.png"
+        imagem.onload = function() {
+          ctx.drawImage(imagem, desenho_box_X, desenho_box_Y);
+        }
       }
 
 
