@@ -11,7 +11,7 @@
       var box_X=30, box_Y=30;
       var parede_x=10,parede_y=300;
       
-      var imagem = new Image();
+      var imagem = new Image()
       imagem.src = "img/mira.fw.png"
       imagem = imagem
       
