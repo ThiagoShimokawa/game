@@ -16,16 +16,15 @@
       imagem = imagem
       
 
-      // Array com as coordenadas dos obstaculos. Tamanho da tela: 300 X 300
+      // Array com as coordenadas dos obstaculos. Para tela: 300 X 300 e movimentos de 30px
       var obstaculos = [
         { x: 150, y: 60 },
         { x: 150, y: 90 },
         { x: 150, y: 120 },
       ];
 
+
       // This function is called on page load.
-
-
       function canvas() {
 
     
@@ -37,19 +36,11 @@
         //window.addEventListener('keydown', _controles, true);
       }
 
-
       function desenhaFundo() {
           ctx.fillStyle = "gray";
           ctx.rect(0, 0, tamanho_box_X, tamanho_box_Y);
           ctx.fill();         
       }
-
-     
-
-      
-      
-     
-
 
       function desenhaQuadrado() {
         /*ctx.beginPath();     
@@ -58,14 +49,8 @@
         ctx.fillStyle = "green";
         ctx.fill();*/
         
-       
-        
-        //imagem.onload = function() {
-          ctx.drawImage(imagem, desenho_box_X, desenho_box_Y);
-        //}
+        ctx.drawImage(imagem, desenho_box_X, desenho_box_Y);
       }
-
-     
 
        function desenhaParede() {
         ctx.beginPath();     
@@ -75,7 +60,7 @@
         }, this);
 
         ctx.closePath();
-        ctx.fillStyle = "black";
+        ctx.fillStyle = "blue";
         ctx.fill(); 
       }
 
@@ -169,9 +154,6 @@
         box_X=30, box_Y=30;
         parede_x=10,parede_y=100;
       }
-
-
-
 
       function _controles(evt) {
         switch (evt.keyCode) {
