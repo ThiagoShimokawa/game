@@ -156,8 +156,8 @@
 
       function resetarCanvas(){
         $("#entrada").val('');
-        desenho_box_X = 0; // current desenho_box_ position X
-        desenho_box_Y = 0; // current desenho_box_ position Y  
+        desenho_box_X = 30; // current desenho_box_ position X
+        desenho_box_Y = 30; // current desenho_box_ position Y  
         obstaculos = [
           { x: 150, y: 60 },
           { x: 150, y: 90 },
