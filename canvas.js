@@ -25,13 +25,20 @@
       var imgParede = new Image();
       imgParede.src = "img/tijolo.fw.png";
       imgParede = imgParede;
+
+      /*  Pedra .......................... */
+      var imgPedra = new Image();
+      imgPedra.src = "img/pedra.fw.png";
+      imgPedra = imgPedra;
       
 
       // Array com as coordenadas dos obstaculos. Para tela: 510 X 510 e movimentos de 30px
       var obstaculos = [
-        { x: 150, y: 60 },
-        { x: 150, y: 90 },
-        { x: 150, y: 120 },
+        { x: 150, y: 60, tipo: 'parede' },
+        { x: 150, y: 90, tipo: 'parede' },
+        { x: 150, y: 120, tipo: 'parede' },
+        { x: 150, y: 150, tipo: 'pedra' },
+        { x: 180, y: 150, tipo: 'pedra' }
       ];
 
 
@@ -57,7 +64,13 @@
 
        function desenhaParede() {
         obstaculos.forEach(function(pos) {
-          ctx.drawImage(imgParede, pos.x, pos.y);
+
+          if(pos.tipo == 'parede')
+            ctx.drawImage(imgParede, pos.x, pos.y);
+
+          if(pos.tipo == 'pedra')
+            ctx.drawImage(imgPedra, pos.x, pos.y);
+
         }, this);
       }
 
@@ -69,9 +82,11 @@
 
       }
 
+      //function marcarDraw(obj) {
       function marcarDraw() {
-        console.log({x: desenho_box_X, y: desenho_box_Y})
-        obstaculos.push({x: desenho_box_X, y: desenho_box_Y})
+        console.log('x :' + desenho_box_X, 'y:' + desenho_box_Y)
+        //obstaculos.push({x: desenho_box_X, y: desenho_box_Y, tipo: obj})
+        obstaculos.push({x: desenho_box_X, y: desenho_box_Y, tipo: 'parede'})
       }
 
       function canvasDraw(dir){

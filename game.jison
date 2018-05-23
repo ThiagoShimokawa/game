@@ -11,6 +11,8 @@
 "baixo"               return 'BAIXO'
 "resetar"             return 'RESETAR'
 "marcar"              return 'MARCAR'
+"pedra"               return 'PEDRA'
+"parede"              return 'PAREDE'
 <<EOF>>               return 'EOF'
 .                     return 'INVALID'
 
@@ -30,27 +32,27 @@ expressions
     ;
 
 e
-    : 'DIREITA'
+    : DIREITA
         {{
            $$ = canvasDraw($1);   
         }}  
-    | 'ESQUERDA'
+    | ESQUERDA
         {{
            $$ = canvasDraw($1);   
         }} 
-    | 'CIMA'
+    | CIMA
         {{
            $$ = canvasDraw($1);   
         }}  
-    | 'BAIXO'
+    | BAIXO
         {{
            $$ = canvasDraw($1);   
         }}
-    | 'RESETAR'
+    | RESETAR
         {{
             $$ = resetarCanvas();
         }}
-    | 'MARCAR'
+    | MARCAR
         {{
             $$ = marcarDraw();
         }}

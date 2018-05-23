@@ -3219,29 +3219,39 @@ EOF: 1,
       6: 8,
 
       /*! Conditions:: INITIAL */
+      /*! Rule::       pedra */
+      7: 'PEDRA',
+
+      /*! Conditions:: INITIAL */
+      /*! Rule::       parede */
+      8: 'PAREDE',
+
+      /*! Conditions:: INITIAL */
       /*! Rule::       $ */
-      7: 1,
+      9: 1,
 
       /*! Conditions:: INITIAL */
       /*! Rule::       . */
-      8: 'INVALID'
+      10: 'INVALID'
     },
 
     rules: [
-      /* 0: */  /^(?:\s+)/,
-      /* 1: */  /^(?:direita)/,
-      /* 2: */  /^(?:esquerda)/,
-      /* 3: */  /^(?:cima)/,
-      /* 4: */  /^(?:baixo)/,
-      /* 5: */  /^(?:resetar)/,
-      /* 6: */  /^(?:marcar)/,
-      /* 7: */  /^(?:$)/,
-      /* 8: */  /^(?:.)/
+      /*  0: */  /^(?:\s+)/,
+      /*  1: */  /^(?:direita)/,
+      /*  2: */  /^(?:esquerda)/,
+      /*  3: */  /^(?:cima)/,
+      /*  4: */  /^(?:baixo)/,
+      /*  5: */  /^(?:resetar)/,
+      /*  6: */  /^(?:marcar)/,
+      /*  7: */  /^(?:pedra)/,
+      /*  8: */  /^(?:parede)/,
+      /*  9: */  /^(?:$)/,
+      /* 10: */  /^(?:.)/
     ],
 
     conditions: {
       'INITIAL': {
-        rules: [0, 1, 2, 3, 4, 5, 6, 7, 8],
+        rules: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
         inclusive: true
       }
     }
