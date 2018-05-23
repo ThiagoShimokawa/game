@@ -110,7 +110,7 @@
         }else if(dir=="baixo"){
           var c = verificarObstaculo(desenho_box_X , desenho_box_Y + box_Y)
           if(!c )
-            desenho_box_Y = desenho_box_Y + box_Y + 30;
+            desenho_box_Y = desenho_box_Y + box_Y;
           if (desenho_box_Y > tamanho_box_Y - box_Y - 30){ 
              desenho_box_Y = tamanho_box_Y - box_Y - 30; 
              msg()
