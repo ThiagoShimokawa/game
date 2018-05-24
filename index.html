@@ -62,6 +62,7 @@
      function interpretar(entrada) {
          if (entrada != '') {
              try {
+                 console.log("Entrad CMD: " + entrada);
                 var resultado = game.parse(entrada);
                 $('#saidaJISON').html(resultado);
              } catch (e) {

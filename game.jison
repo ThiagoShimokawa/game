@@ -1,10 +1,11 @@
 /* description: Parses and executes mathematical expressions. */
-%{%}
+
 /* lexical grammar */
 %lex
 %%
 
 \s+                   /* skip whitespace */
+[0-9]+                return 'NUMBER'
 "direita"             return 'DIREITA'
 "esquerda"            return 'ESQUERDA'
 "cima"                return 'CIMA'
@@ -13,6 +14,7 @@
 "marcar"              return 'MARCAR'
 "pedra"               return 'PEDRA'
 "parede"              return 'PAREDE'
+"mover"               return 'MOVER'
 <<EOF>>               return 'EOF'
 .                     return 'INVALID'
 
@@ -34,26 +36,46 @@ expressions
 e
     : DIREITA
         {{
-           $$ = canvasDraw($1);   
+           $$ = $1;   
         }}  
     | ESQUERDA
         {{
-           $$ = canvasDraw($1);   
+           $$ = $1;   
         }} 
     | CIMA
         {{
-           $$ = canvasDraw($1);   
+           $$ = $1;   
         }}  
     | BAIXO
         {{
-           $$ = canvasDraw($1);   
+           $$ = $1;   
+        }}
+    | NUMBER
+        {{
+           {$$ = Number(yytext);}
         }}
     | RESETAR
         {{
             $$ = resetarCanvas();
         }}
-    | MARCAR
+    | MARCAR e
         {{
-            $$ = marcarDraw();
+            $$ = marcarDraw($2);
+        }}
+    | PAREDE
+        {{
+            $$ = "parede";
+        }}
+    | PEDRA
+        {{
+            $$ = "pedra";
+        }}
+    | MOVER e
+        {{
+            $$ = canvasDraw($2, 1);
+        }}
+    | MOVER e NUMBER
+        {{
+            $$ = canvasDraw($2, $3);
         }}
     ;

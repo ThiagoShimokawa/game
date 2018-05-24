@@ -577,7 +577,7 @@ var parser = {
     //   .................................. false
     //   uses yyleng: ..................... false
     //   uses yylineno: ................... false
-    //   uses yytext: ..................... false
+    //   uses yytext: ..................... true
     //   uses yylloc: ..................... false
     //   uses ParseError API: ............. false
     //   uses YYERROR: .................... false
@@ -614,11 +614,15 @@ symbols_: {
   "DIREITA": 3,
   "EOF": 1,
   "ESQUERDA": 4,
-  "MARCAR": 8,
-  "RESETAR": 7,
-  "e": 10,
+  "MARCAR": 9,
+  "MOVER": 12,
+  "NUMBER": 7,
+  "PAREDE": 10,
+  "PEDRA": 11,
+  "RESETAR": 8,
+  "e": 14,
   "error": 2,
-  "expressions": 9
+  "expressions": 13
 },
 terminals_: {
   1: "EOF",
@@ -627,8 +631,12 @@ terminals_: {
   4: "ESQUERDA",
   5: "CIMA",
   6: "BAIXO",
-  7: "RESETAR",
-  8: "MARCAR"
+  7: "NUMBER",
+  8: "RESETAR",
+  9: "MARCAR",
+  10: "PAREDE",
+  11: "PEDRA",
+  12: "MOVER"
 },
 TERROR: 2,
     EOF: 1,
@@ -734,17 +742,21 @@ TERROR: 2,
     },
 productions_: bp({
   pop: u([
-  9,
+  13,
   s,
-  [10, 6]
+  [14, 11]
 ]),
   rule: u([
   2,
   s,
-  [1, 6]
+  [1, 6],
+  c,
+  [7, 3],
+  2,
+  3
 ])
 }),
-performAction: function parser__PerformAction(yystate /* action[1] */, yysp, yyvstack) {
+performAction: function parser__PerformAction(yytext, yystate /* action[1] */, yysp, yyvstack) {
 
           /* this == yyval */
 
@@ -784,67 +796,132 @@ case 4:
 case 5:
     /*! Production::    e : BAIXO */
 
-    this.$ = canvasDraw(yyvstack[yysp]);
+    this.$ = yyvstack[yysp];
     break;
 
 case 6:
+    /*! Production::    e : NUMBER */
+
+    {this.$ = Number(yytext);}
+    break;
+
+case 7:
     /*! Production::    e : RESETAR */
 
     this.$ = resetarCanvas();
     break;
 
-case 7:
-    /*! Production::    e : MARCAR */
+case 8:
+    /*! Production::    e : MARCAR e */
 
-    this.$ = marcarDraw();
+    this.$ = marcarDraw(yyvstack[yysp]);
+    break;
+
+case 9:
+    /*! Production::    e : PAREDE */
+
+    this.$ = "parede";
+    break;
+
+case 10:
+    /*! Production::    e : PEDRA */
+
+    this.$ = "pedra";
+    break;
+
+case 11:
+    /*! Production::    e : MOVER e */
+
+    this.$ = canvasDraw(yyvstack[yysp], 1);
+    break;
+
+case 12:
+    /*! Production::    e : MOVER e NUMBER */
+
+    this.$ = canvasDraw(yyvstack[yysp - 1], yyvstack[yysp]);
     break;
 
 }
 },
 table: bt({
   len: u([
-  8,
+  12,
   1,
   1,
   s,
-  [0, 7]
+  [0, 6],
+  11,
+  c,
+  [3, 5],
+  2,
+  0
 ]),
   symbol: u([
   s,
-  [3, 8, 1],
+  [3, 12, 1],
   1,
-  1
+  1,
+  c,
+  [14, 10],
+  14,
+  c,
+  [11, 11],
+  1,
+  7
 ]),
   type: u([
   s,
-  [2, 6],
+  [2, 10],
   0,
   0,
   1,
-  2
+  s,
+  [2, 11],
+  0,
+  c,
+  [11, 13]
 ]),
   state: u([
   1,
-  2
+  2,
+  14,
+  15
 ]),
   mode: u([
   s,
-  [1, 7]
+  [1, 31],
+  2,
+  1
 ]),
   goto: u([
   s,
-  [3, 7, 1]
+  [3, 11, 1],
+  c,
+  [11, 10],
+  c,
+  [10, 10],
+  11,
+  16
 ])
 }),
 defaultActions: bda({
   idx: u([
   s,
-  [3, 7, 1]
+  [3, 6, 1],
+  10,
+  11,
+  13,
+  14,
+  16
 ]),
   goto: u([
   s,
   [2, 6, 1],
-  1
+  9,
+  10,
+  1,
+  8,
+  12
 ])
 }),
 parseError: function parseError(str, hash, ExceptionClass) {
@@ -873,7 +950,7 @@ parse: function parse(input) {
     var table = this.table;
     var sp = 0;                         // 'stack pointer': index into the stacks
 
-
+    var yytext;
     
 
 
@@ -884,7 +961,7 @@ parse: function parse(input) {
     var TERROR = this.TERROR;
     var EOF = this.EOF;
     var ERROR_RECOVERY_TOKEN_DISCARD_COUNT = (this.options.errorRecoveryTokenDiscardCount | 0) || 3;
-    var NO_ACTION = [0, 10 /* === table.length :: ensures that anyone using this new state will fail dramatically! */];
+    var NO_ACTION = [0, 17 /* === table.length :: ensures that anyone using this new state will fail dramatically! */];
 
     var lexer;
     if (this.__lexer__) {
@@ -1311,7 +1388,7 @@ parse: function parse(input) {
         stack[sp] = 0;
         ++sp;
 
-
+        yytext = lexer.yytext;
 
 
 
@@ -1431,7 +1508,7 @@ parse: function parse(input) {
 
                 // Pick up the lexer details for the current symbol as that one is not 'look-ahead' any more:
 
-
+                yytext = lexer.yytext;
 
 
                 continue;
@@ -1453,7 +1530,7 @@ parse: function parse(input) {
 
 
 
-                r = this.performAction.call(yyval, newState, sp - 1, vstack);
+                r = this.performAction.call(yyval, yytext, newState, sp - 1, vstack);
 
                 if (typeof r !== 'undefined') {
                     retval = r;
@@ -1843,7 +1920,7 @@ var lexer = function() {
 //
 //   uses yyleng: ..................... false
 //   uses yylineno: ................... false
-//   uses yytext: ..................... false
+//   uses yytext: ..................... true
 //   uses yylloc: ..................... false
 //   uses lexer values: ............... true / true
 //   location tracking: ............... false
@@ -3195,63 +3272,73 @@ EOF: 1,
 
     simpleCaseActionClusters: {
       /*! Conditions:: INITIAL */
+      /*! Rule::       [0-9]+ */
+      1: 7,
+
+      /*! Conditions:: INITIAL */
       /*! Rule::       direita */
-      1: 3,
+      2: 3,
 
       /*! Conditions:: INITIAL */
       /*! Rule::       esquerda */
-      2: 4,
+      3: 4,
 
       /*! Conditions:: INITIAL */
       /*! Rule::       cima */
-      3: 5,
+      4: 5,
 
       /*! Conditions:: INITIAL */
       /*! Rule::       baixo */
-      4: 6,
+      5: 6,
 
       /*! Conditions:: INITIAL */
       /*! Rule::       resetar */
-      5: 7,
-
-      /*! Conditions:: INITIAL */
-      /*! Rule::       marcar */
       6: 8,
 
       /*! Conditions:: INITIAL */
+      /*! Rule::       marcar */
+      7: 9,
+
+      /*! Conditions:: INITIAL */
       /*! Rule::       pedra */
-      7: 'PEDRA',
+      8: 11,
 
       /*! Conditions:: INITIAL */
       /*! Rule::       parede */
-      8: 'PAREDE',
+      9: 10,
+
+      /*! Conditions:: INITIAL */
+      /*! Rule::       mover */
+      10: 12,
 
       /*! Conditions:: INITIAL */
       /*! Rule::       $ */
-      9: 1,
+      11: 1,
 
       /*! Conditions:: INITIAL */
       /*! Rule::       . */
-      10: 'INVALID'
+      12: 'INVALID'
     },
 
     rules: [
       /*  0: */  /^(?:\s+)/,
-      /*  1: */  /^(?:direita)/,
-      /*  2: */  /^(?:esquerda)/,
-      /*  3: */  /^(?:cima)/,
-      /*  4: */  /^(?:baixo)/,
-      /*  5: */  /^(?:resetar)/,
-      /*  6: */  /^(?:marcar)/,
-      /*  7: */  /^(?:pedra)/,
-      /*  8: */  /^(?:parede)/,
-      /*  9: */  /^(?:$)/,
-      /* 10: */  /^(?:.)/
+      /*  1: */  /^(?:\d+)/,
+      /*  2: */  /^(?:direita)/,
+      /*  3: */  /^(?:esquerda)/,
+      /*  4: */  /^(?:cima)/,
+      /*  5: */  /^(?:baixo)/,
+      /*  6: */  /^(?:resetar)/,
+      /*  7: */  /^(?:marcar)/,
+      /*  8: */  /^(?:pedra)/,
+      /*  9: */  /^(?:parede)/,
+      /* 10: */  /^(?:mover)/,
+      /* 11: */  /^(?:$)/,
+      /* 12: */  /^(?:.)/
     ],
 
     conditions: {
       'INITIAL': {
-        rules: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+        rules: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
         inclusive: true
       }
     }
