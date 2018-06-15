@@ -13,22 +13,22 @@
       
       /*  Cursor .......................... */
       var imgCursor = new Image();
-      imgCursor.src = "img/mira.fw.png";
+      imgCursor.src = "_imagens/mira.fw.png";
       imgCursor = imgCursor;
 
       /*  Fundo .......................... */
       var imgFundo = new Image();
-      imgFundo.src = "img/fundo.fw.png";
+      imgFundo.src = "_imagens/fundo.fw.png";
       imgFundo = imgFundo;
 
       /*  Parede .......................... */
       var imgParede = new Image();
-      imgParede.src = "img/tijolo.fw.png";
+      imgParede.src = "_imagens/tijolo.fw.png";
       imgParede = imgParede;
 
       /*  Pedra .......................... */
       var imgPedra = new Image();
-      imgPedra.src = "img/pedra.fw.png";
+      imgPedra.src = "_imagens/pedra.fw.png";
       imgPedra = imgPedra;
       
 
