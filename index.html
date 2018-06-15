@@ -35,14 +35,53 @@
             </div>
             <div class="card-body">
                 <div class="row">
-                        <div class="col-md-6">
-                             <textarea class="form-control" rows="20" style="resize: none;" placeholder="Digite aqui" id="entrada"></textarea>
-                             <p class="text-muted" style="text-align: start; margin-bottom: 0px;">*Pressione a tecla ENTER para enviar o CMD</p>
-                        </div>
-                        <div class="col-md-6" style="text-align: start;">
-                            <canvas id="myCanvas" width="510" height="510">Browser não oferece suporte à Canvas.</canvas>
-                        </div>
-                </div>
+                    <div class="col-md-6 col-lg-6 col-sm-6">
+                                <nav style="margin-bottom: 10px;">
+                                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                      <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Blocos</a>
+                                      <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Texto</a>
+                                     
+                                    </div>
+                                </nav>
+                                <div class="tab-content" id="nav-tabContent">
+                                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                        <!--<div class="row">
+                                            <div class="col-lg-11">-->
+                                                <div id="blocklyDiv" style="height: 420px; width: 100%;"></div>
+                                                
+                                                <xml xmlns="http://www.w3.org/1999/xhtml" id="toolbox" style="display: none;">
+                                                <block type="movimeto"></block>
+                                                <block type="marcar"></block>
+                                                <block type="inicio"></block>
+                                                <block type="tijolo"></block>
+                                                <block type="pedra"></block>
+                                                <block type="gelo"></block>
+                                                </xml>
+                                                <button class="btn btn-danger" style="margin-top: 2px; width: 189px;" id="construir"><i class="fa fa-caret-square-o-right"></i> Play</button>
+                                                
+                                            <!--<</div>
+                                            div class="col-lg-1" style="text-align: end;">
+                                                <i class="fa fa-caret-square-o-right" style="color: red; font-size: 45px;"></i>    
+                                            </div>    
+                                        </div>-->   
+                                        
+
+                                    </div>
+                                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+
+                                        <textarea class="form-control" rows="17" style="resize: none;" placeholder="Digite aqui" id="entrada"></textarea>
+                                        <p class="text-muted" style="text-align: start; margin-bottom: 0px;">*Pressione a tecla ENTER para enviar o CMD</p>
+                                               
+
+                                    </div>
+                                    
+                                </div>  
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-sm-6" style="text-align: start;">
+                        <canvas id="myCanvas" width="510" height="510">Browser não oferece suporte à Canvas.</canvas>
+                    </div>
+            </div>
+
                 <p class="text-muted" style="margin-top: 20px; margin-bottom: -15px; text-align: start;">Saída JISON:</p>
                 <hr>
                 <div class="row"> 
@@ -60,6 +99,10 @@
  <script src="_javascript/canvas.js"></script>
  <script src="_javascript/game.js"></script>
  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+ <script src="_blocos/blockly_compressed.js"> </script> 
+ <script src="_blocos/blocks_compressed.js"> </script> 
+ <script src="_blocos/pt-br.js"></script>
+ <script src="_blocos/blocos.js"></script>
  <script> 
      function interpretar(entrada) {
          if (entrada != '') {
