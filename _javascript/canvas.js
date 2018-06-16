@@ -13,7 +13,7 @@
       
       /*  Cursor .......................... */
       var imgCursor = new Image();
-      imgCursor.src = "_imagens/mira.fw.png";
+      imgCursor.src = "_imagens/pa.fw.png";
       imgCursor = imgCursor;
 
       /*  Fundo .......................... */
@@ -45,9 +45,9 @@
       function obstaculoPadrao(){
         obstaculos = [
           { x: 150, y: 60, tipo: 'tijolo' },
-          { x: 150, y: 90, tipo: 'tijolo' },
+          { x: 150, y: 90, tipo: 'gelo' },
           { x: 150, y: 120, tipo: 'tijolo' },
-          { x: 150, y: 150, tipo: 'pedra' },
+          { x: 150, y: 150, tipo: 'tnt' },
           { x: 180, y: 150, tipo: 'pedra' }
         ];
       }
