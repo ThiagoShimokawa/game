@@ -114,8 +114,7 @@
     function processarCMD(entrada) {
         if(entrada != ''){
             entrada.forEach(function(cmd) {
-                var resultado = game.parse(cmd);
-                $('#saidaJISON').html(resultado);
+                interpretar(cmd);
         }, this);
         }
     }
@@ -132,14 +131,14 @@
      $(document).ready(function(){
         $("#entrada").focus()
         canvas()
-        $("#entrada").keypress(ref=>{
+        /*$("#entrada").keypress(ref=>{
             if(ref.which == 13) {
                try{
                    var c = $("#entrada").val().toLowerCase().split('\n')
                    interpretar(c[c.length-1]); 
                }catch(e){}
             }
-        })
+        })*/
 
         $("#limparConsole").click(()=>{
             $('#entrada').val('')
