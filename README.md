@@ -4,7 +4,9 @@ a análise léxica e sintática, gerando uma saída gráfica
 em um elemento canvas.
 
 Recursos Utilizados:
-Jison: http://zaa.ch/jison/ .
+
+Jison: http://zaa.ch/jison/ 
+
 Google Blockly: https://developers.google.com/blockly/
 
 
