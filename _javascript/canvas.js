@@ -21,7 +21,7 @@
       imgFundo.src = "_imagens/fundo.fw.png";
       imgFundo = imgFundo;
 
-      /*  Parede .......................... */
+      /*  Tijolo .......................... */
       var imgTijolo = new Image();
       imgTijolo.src = "_imagens/tijolo.fw.png";
       imgTijolo = imgTijolo;
@@ -44,11 +44,80 @@
 
       function obstaculoPadrao(){
         obstaculos = [
-          { x: 150, y: 60, tipo: 'tijolo' },
-          { x: 150, y: 90, tipo: 'gelo' },
-          { x: 150, y: 120, tipo: 'tijolo' },
-          { x: 150, y: 150, tipo: 'tnt' },
-          { x: 180, y: 150, tipo: 'pedra' }
+          { x: 30, y: 30, tipo: 'pedra' },
+          { x: 30, y: 60, tipo: 'pedra' },
+          { x: 30, y: 90, tipo: 'pedra' },
+          { x: 30, y: 120, tipo: 'tijolo' },
+          { x: 30, y: 150, tipo: 'tijolo' },
+          { x: 30, y: 180, tipo: 'pedra' },
+          { x: 30, y: 210, tipo: 'tijolo' },
+          { x: 30, y: 240, tipo: 'pedra' },
+          { x: 30, y: 270, tipo: 'tijolo' },
+          { x: 30, y: 300, tipo: 'pedra' },
+          { x: 30, y: 330, tipo: 'tijolo' },
+          { x: 30, y: 360, tipo: 'tijolo' },
+          { x: 30, y: 390, tipo: 'pedra' },
+          { x: 30, y: 420, tipo: 'tijolo' },
+          { x: 30, y: 450, tipo: 'tijolo' },/* */
+          { x: 450, y: 30, tipo: 'pedra' },
+          { x: 450, y: 60, tipo: 'pedra' },
+          { x: 450, y: 90, tipo: 'pedra' },
+          { x: 450, y: 120, tipo: 'tijolo' },
+          { x: 450, y: 150, tipo: 'tijolo' },
+          { x: 450, y: 180, tipo: 'pedra' },
+          { x: 450, y: 210, tipo: 'tijolo' },
+          { x: 450, y: 240, tipo: 'pedra' },
+          { x: 450, y: 270, tipo: 'tijolo' },
+          { x: 450, y: 300, tipo: 'pedra' },
+          { x: 450, y: 330, tipo: 'tijolo' },
+          { x: 450, y: 360, tipo: 'tijolo' },
+          { x: 450, y: 390, tipo: 'pedra' },
+          { x: 450, y: 420, tipo: 'tijolo' },
+          { x: 450, y: 450, tipo: 'tijolo' },/* */
+          { x: 60, y: 450, tipo: 'pedra' },
+          { x: 90, y: 450, tipo: 'pedra' },
+          { x: 120, y: 450, tipo: 'pedra' },
+          { x: 150, y: 450, tipo: 'tijolo' },
+          { x: 180, y: 450, tipo: 'tijolo' },
+          { x: 210, y: 450, tipo: 'pedra' },
+          { x: 240, y: 450, tipo: 'tijolo' },
+          { x: 270, y: 450, tipo: 'pedra' },
+          { x: 300, y: 450, tipo: 'tijolo' },
+          { x: 330, y: 450, tipo: 'pedra' },
+          { x: 360, y: 450, tipo: 'tijolo' },
+          { x: 390, y: 450, tipo: 'tijolo' },
+          { x: 420, y: 450, tipo: 'pedra' },/* */
+          { x: 150, y: 390, tipo: 'tijolo' },
+          { x: 150, y: 420, tipo: 'tijolo' },/* */
+          { x: 270, y: 390, tipo: 'tijolo' },
+          { x: 270, y: 420, tipo: 'tijolo' },/* */
+          { x: 270, y: 30, tipo: 'pedra' },
+          { x: 270, y: 60, tipo: 'pedra' },
+          { x: 270, y: 90, tipo: 'pedra' },
+          { x: 270, y: 120, tipo: 'tijolo' },
+          { x: 270, y: 150, tipo: 'tijolo' },
+          { x: 270, y: 180, tipo: 'pedra' },
+          { x: 270, y: 210, tipo: 'tijolo' },
+          { x: 270, y: 240, tipo: 'pedra' },
+          { x: 270, y: 270, tipo: 'tijolo' },
+          { x: 270, y: 300, tipo: 'pedra' },
+          { x: 270, y: 330, tipo: 'tijolo' },/* */
+          { x: 90, y: 390, tipo: 'tnt' },
+          { x: 90, y: 360, tipo: 'tnt' },
+          { x: 90, y: 330, tipo: 'gelo' },/* */
+          { x: 120, y: 330, tipo: 'pedra' },
+          { x: 150, y: 330, tipo: 'tijolo' },
+          { x: 180, y: 330, tipo: 'pedra' },
+          { x: 210, y: 330, tipo: 'tijolo' },
+          { x: 240, y: 330, tipo: 'pedra' },/* */
+          { x: 210, y: 360, tipo: 'tijolo' },
+          { x: 210, y: 390, tipo: 'pedra' },/* */
+          { x: 90, y: 30, tipo: 'tijolo' },
+          { x: 120, y: 30, tipo: 'pedra' },
+          { x: 150, y: 30, tipo: 'tijolo' },
+          { x: 180, y: 30, tipo: 'pedra' },
+          { x: 210, y: 30, tipo: 'tijolo' },
+          { x: 240, y: 30, tipo: 'pedra' },/* */
         ];
       }
 
@@ -161,7 +230,7 @@
 
       function resetarCanvas(){
         $("#entrada").val('');
-        cursor_eixo_X = cursor_eixo_Y = 30;
+        cursor_eixo_X = cursor_eixo_Y = 240;
         obstaculos = [];
         //obstaculoPadrao();
       }
@@ -189,8 +258,33 @@
           canvasDraw('cima')
           break;
 
+        /* Área de Teste - Construir labirinto. */
+        // Imprimir lista de objetos do cenario
+        case 68: // d
+          var str = '';
+          obstaculos.forEach(function(linha) {
+            str += "{ x: " + linha.x + ", y: " + linha.y + ", tipo: '" + linha.tipo + "' }," + "<br />"
+          }, this);
+          document.getElementById("debugue").innerHTML = str;
+          break;
+ 
+        case 49: //t
+        marcarDraw('tijolo')
+        break;
+
+        case 50: //g
+        marcarDraw('gelo')
+        break;
+        
+        case 51: //b
+        marcarDraw('tnt')
+        break;
+        
+        case 52: //p
+        marcarDraw('pedra')
+        break;
+
         }
 
-        
       
       }
