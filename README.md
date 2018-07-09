@@ -12,3 +12,4 @@ Google Blockly: https://developers.google.com/blockly/
 
 Demo: https://thiagoshimokawa.github.io/Game-jisom/
 
+Artigo: https://docs.google.com/document/d/1iJevDOL7cSd8g5rAEKlzBHLfHMTanSMfKkwuD4oX2lM/edit?usp=sharing
